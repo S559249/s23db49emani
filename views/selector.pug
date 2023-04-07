@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p This is Aasrita Emani #{title}
+  - var images_names = ['nutella brownie.jpg',"candy cake.jpg",'cherry flesh.jpg','vanilla treat.jpg','brownie.jpg']
+  - var i =0;
+  - while(i<3){
+     - var rand = Math.floor(Math.random()*5)
+     - var img = "/images/"+images_names[rand]
+     - i++
+     img(src=img,  height="300px",width="300px",alt="alt") 
+  -}

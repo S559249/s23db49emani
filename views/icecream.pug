@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  -
+   let results =[
+      {
+        "icecream_name": "nutella brownie",
+        "icecream_flavour": "chocolate",
+        "icecream_parts": 2
+      },
+      {
+        "icecream_name": "candy cake",
+        "icecream_flavour": "peach",
+        "icecream_parts": 1
+      },
+      {
+        "icecream_name": "cherry flesh",
+        "icecream_flavour": "cherry",
+        "icecream_parts": 2
+      },
+      {
+        "icecream_name": "vanilla treat",
+        "icecream_flavour": "vanilla",
+        "icecream_parts": 2
+      },
+      {
+        "icecream_name": "brownie",
+        "icecream_flavour": "butterscotch",
+        "icecream_parts": 4
+      }
+    ]
+  h1= title
+  .container-fluid 
+    .row 
+    
+      each i in results
+        div(class="col-sm-2" style=`border:solid 2px black ` onclick=`buy(${results.indexOf(i)})`) 
+          each value,key in i 
+            = key + " : " + value
+            br
+  script.
+    function buy(index){
+      alert("You purchased item "+(index+1))
+    }
