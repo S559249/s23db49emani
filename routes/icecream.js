@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
+const icecream_controller = require("../controllers/icecream")
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('Icecream', { title: 'Search Results Icecream' });
-});
+router.get('/', icecream_controller.icecream_view_all_Page );
 
 module.exports = router;
