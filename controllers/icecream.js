@@ -2,7 +2,7 @@
 const icecream = require('../models/icecream');
 var Icecream = require('../models/icecream');
 
-// List of all Costumes
+// List of all icecreams
 exports.icecream_list = async function(req, res) {
     try{
         theIcecreams = await Icecream.find();
@@ -23,14 +23,14 @@ res.send('NOT IMPLEMENTED: icecream detail: ' + req.params.id);
 //res.send('NOT IMPLEMENTED: icecream create POST');
 //};
 
-// Handle Costume create on POST.
+// Handle icecream create on POST.
 exports.icecream_create_post = async function(req, res) {
     console.log(req.body)
     let document = new icecream();
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"icecream_type":"goat", "cost":12, "size":"large"}
+    // {"icecream_name":"goat", "flavour":12, "parts":"large"}
     document.name = req.body.name;
     document.flavour = req.body.flavour;
     document.parts = req.body.parts;
@@ -67,3 +67,40 @@ exports.icecream_view_all_Page = async function(req, res) {
     }
     };
         
+// for a specific icecream.
+exports.icecream_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await icecream.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+
+
+    //Handle icecream update form on PUT.
+    exports.icecream_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await icecream.findById( req.params.id)
+        // Do updates of properties
+        if(req.body.name)
+            toUpdate.name = req.body.name;
+        if(req.body.flavour) toUpdate.flavour = req.body.flavour;
+        if(req.body.parts) toUpdate.parts = req.body.parts;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+        } catch (err) {
+            res.status(500)
+            res.send(`{"error": ${err}: Update for id ${req.params.id}
+        failed`);
+        }
+    };
+    
+    
+    
+    
