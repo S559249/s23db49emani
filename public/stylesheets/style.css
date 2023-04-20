@@ -6,3 +6,13 @@ body {
 a {
   color: #00B7FF;
 }
+.icecreamAttr {
+  background-color:rgb(165, 101, 17);
+  width: 300px;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 30px;
+  padding: 30px;
+  color:rgb(139, 0, 37);
+  border: 3px solid rgb(224, 103, 103);
+  }
+  

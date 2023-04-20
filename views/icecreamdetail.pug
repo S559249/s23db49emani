@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1= title
+    if (toShow == null)
+        h2 No instane to detail 
+    else    
+        - let icecreamid = toShow._id
+        - let name = toShow.name
+        - let flavour = toShow.flavour
+        - let parts = toShow.parts
+        div
+            div.row
+                div(class='icecreamAttr mr-3') icecream ID is:
+                div #{icecreamid}
+            div.row
+                div(class='icecreamAttr mr-3') icecream Name is:
+                div #{name}
+            div.row
+                div(class='icecreamAttr mr-3') icecream Flavour is:
+                div #{flavour}
+            div.row
+               div(class='icecreamAttr mr-3') icecream Parts is:
+               div #{parts}
