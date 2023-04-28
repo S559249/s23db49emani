@@ -1,23 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title} modified by Emani Aasrita
-  P Lab 10
-  button(type="button", onclick="doReduce()" class="btn btn-warning") press me
-  #reduce Reduce the value
-  script.
-    var count = 20
-    var change = -1
-    function doReduce(){
-      console.log("Camer here")
-      count = count + change
-      change = change -1
-      let resultdiv = document.getElementById('reduce')
-      resultdiv.innerHTML=`Count ${count} with bump ${change}`
-    }
-  a(href="/selector") selector 
+ if (!user)
+  a(href="/login") Login
   br
-  a(href="/board") board
+  a(href="/register") Register
+ if (user)
+  p You are currently logged in as #{user.username}
+  a(href="/icecream") Take me to icecream
   br
-  a(href="/icecream") icecream Search results 
+  a(href="/logout") Logout
