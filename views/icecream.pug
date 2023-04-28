@@ -2,20 +2,28 @@ extends layout
 
 block content
   -let result = results
+
+  button.btn( class="btn-primary ml-1", onclick= createN) Create
   h1= title
   .container-fluid 
     .row 
       each i in result
         - let destination = `dispatch(\"/icecream/update?id=${i._id}\")`
+        - let deleteM = `dispatch(\"/icecream/delete?id=${i._id}\")`
+        - let detail = `dispatch(\"/icecream/detail?id=${i._id}\")`
+        - let createN = `dispatch(\"/icecream/create?id=${i._id}\")`
         div(class="col-sm-2" style=`border:solid 2px black ` onclick=`buy(${result.indexOf(i)})`) 
           p Ice cream name : #{i.name}
           p Flavour : #{i.flavour}
           p Parts : #{i.parts}
           button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-primary ml-1", onclick= detail) Detail
+          button.btn( class="btn-primary ml-1", onclick= deleteM) Delete
+
   script.
-    function buy(index){
-      alert("You purchased item "+(index+1))
-    }
+    //- function buy(index){
+    //-   alert("You purchased item "+(index+1))
+    //- }
 
      function dispatch(path){
       window.location.href=path
